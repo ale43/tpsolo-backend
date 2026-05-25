@@ -30,14 +30,11 @@ public class HuespedController {
     @PostMapping
     public ResponseEntity<?> registrar(@RequestBody Huesped nuevo) {
         try {
-            // Intentamos dar de alta desde el servicio
             huespedServicio.darDeAlta(nuevo);
             return ResponseEntity.ok("Huésped registrado con éxito.");
         } catch (IllegalArgumentException e) {
-            // Si el servicio tiró el error de DNI duplicado, lo mandamos al Front con código 400
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
-            // Cualquier otro fallo inesperado
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error inesperado en el servidor: " + e.getMessage());
         }

@@ -8,10 +8,9 @@ import java.util.List;
 
 @Repository
 public interface HuespedRepositorio extends JpaRepository<Huesped, Integer> {
-
-    // Necesario para el alta/baja y buscar por DNI exacto
     Optional<Huesped> findByDni(String dni);
-
-    // Necesario para la barra de búsqueda predictiva por DNI o Apellido
-    List<Huesped> findByDniContainingOrApellidoIgnoreCaseContaining(String dni, String apellido);
+    
+    List<Huesped> findByActivoTrue();
+    
+    List<Huesped> findByActivoTrueAndDniContainingOrActivoTrueAndApellidoIgnoreCaseContaining(String dni, String apellido);
 }

@@ -14,7 +14,7 @@ public class Habitacion implements ComponenteHabitacion {
 
     private String numero;
     private String piso;
-    private String categoria; // Individual Estándar, Doble Superior, Suite, etc.
+    private String categoria; 
     
     @Column(name = "precio_base")
     private BigDecimal precioBase;
@@ -40,7 +40,6 @@ public class Habitacion implements ComponenteHabitacion {
         return "Habitación " + numero + " (" + categoria + ")";
     }
 
-    // Getters y Setters tradicionales para JPA y tu Grilla del Front
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

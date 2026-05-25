@@ -20,10 +20,12 @@ D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\dao\Huespe
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\dao\interfaces\IAutenticacionServicio.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\entidades\Cheque.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\entidades\Reserva.java
+D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\repositorio\FacturaRepositorio.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\strategy\PrecioNormalStrategy.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\controller\HabitacionController.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\repositorio\HuespedRepositorio.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\entidades\MedioPago.java
+D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\servicios\FacturaServicio.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\servicios\HabitacionServicio.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\entidades\Efectivo.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\entidades\Habitacion.java
@@ -34,6 +36,7 @@ D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\Tpsolo.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\repositorio\HabitacionRepositorio.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\repositorio\UsuarioRepositorio.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\servicios\AutenticacionServicio.java
+D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\config\CorsConfig.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\controller\ReservaController.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\decoradores\ComponenteHabitacion.java
 D:\PC\Documents\NetBeansProjects\tpsolo\src\main\java\isi\deso\tpsolo\decoradores\FrigobarDecorator.java
