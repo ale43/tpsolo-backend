@@ -12,8 +12,5 @@ public interface FacturaRepositorio extends JpaRepository<Factura, Long> {
     List<Factura> findByHuespedDniOrderByFechaEmisionDesc(String huespedDni);
  
     List<Factura> findByReservaIdOrderByFechaEmisionDesc(Long reservaId);
- 
-    @org.springframework.transaction.annotation.Transactional
-    void deleteByReservaId(Long reservaId);
 }
  

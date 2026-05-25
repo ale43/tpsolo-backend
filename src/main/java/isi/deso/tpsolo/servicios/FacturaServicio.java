@@ -18,7 +18,6 @@ public class FacturaServicio {
     private static final double PRECIO_COCHERA = 25000.0;
     private static final double PRECIO_FRIGOBAR = 35000.0;
     private static final double PRECIO_NOCHE_BASE = 30000.0;
- 
     private static final double DESCUENTO_EFECTIVO = 0.10;
  
     @Autowired
@@ -28,8 +27,6 @@ public class FacturaServicio {
     private ReservaRepositorio reservaRepositorio;
  
     public Factura generarFactura(Map<String, Object> payload) {
- 
-        // 1. Obtener la reserva
         Long reservaId = Long.valueOf(payload.get("reservaId").toString());
         Reserva reserva = reservaRepositorio.findById(reservaId)
                 .orElseThrow(() -> new IllegalArgumentException("Reserva no encontrada con ID: " + reservaId));
@@ -51,7 +48,7 @@ public class FacturaServicio {
         double montoTotal = subtotal;
  
         if ("EFECTIVO".equals(formaPago)) {
-            descuentoAplicado = DESCUENTO_EFECTIVO * 100; 
+            descuentoAplicado = DESCUENTO_EFECTIVO * 100;
             montoTotal = subtotal * (1 - DESCUENTO_EFECTIVO);
         }
  
@@ -59,6 +56,7 @@ public class FacturaServicio {
  
         Factura factura = new Factura();
         factura.setReserva(reserva);
+        factura.setReservaIdSnapshot(reserva.getId());
         factura.setHuespedDni(reserva.getHuesped().getDni());
         factura.setHuespedNombre(reserva.getHuesped().getApellido() + ", " + reserva.getHuesped().getNombre());
         factura.setMontoBase(montoBase);

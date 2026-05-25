@@ -12,11 +12,13 @@ public class Factura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
  
-   
-    @ManyToOne
-    @JoinColumn(name = "reserva_id", nullable = false)
-    @JsonIgnoreProperties({"huesped", "habitacion", "reservas"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reserva_id", nullable = true)
+    @JsonIgnoreProperties({"huesped", "habitacion", "reservas", "hibernateLazyInitializer", "handler"})
     private Reserva reserva;
+ 
+    @Column(name = "reserva_id_snapshot")
+    private Long reservaIdSnapshot;
  
     @Column(name = "huesped_dni")
     private String huespedDni;
@@ -24,27 +26,26 @@ public class Factura {
     @Column(name = "huesped_nombre")
     private String huespedNombre;
  
-    // Montos
     @Column(name = "monto_base")
     private Double montoBase;
  
-    @Column(name = "adicional_cochera")
-    private boolean adicionalCochera;
+    @Column(name = "adicional_cochera", columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean adicionalCochera = false;
  
-    @Column(name = "adicional_frigobar")
-    private boolean adicionalFrigobar;
+    @Column(name = "adicional_frigobar", columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean adicionalFrigobar = false;
  
     @Column(name = "monto_adicionales")
     private Double montoAdicionales;
  
     @Column(name = "descuento_aplicado")
-    private Double descuentoAplicado; 
+    private Double descuentoAplicado;
  
     @Column(name = "monto_total")
     private Double montoTotal;
  
     @Column(name = "forma_pago")
-    private String formaPago; 
+    private String formaPago;
  
     @Column(name = "tarjeta_numero")
     private String tarjetaNumero;
@@ -69,12 +70,14 @@ public class Factura {
  
     public Factura() {}
  
- 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
  
     public Reserva getReserva() { return reserva; }
     public void setReserva(Reserva reserva) { this.reserva = reserva; }
+ 
+    public Long getReservaIdSnapshot() { return reservaIdSnapshot; }
+    public void setReservaIdSnapshot(Long reservaIdSnapshot) { this.reservaIdSnapshot = reservaIdSnapshot; }
  
     public String getHuespedDni() { return huespedDni; }
     public void setHuespedDni(String huespedDni) { this.huespedDni = huespedDni; }
@@ -85,11 +88,11 @@ public class Factura {
     public Double getMontoBase() { return montoBase; }
     public void setMontoBase(Double montoBase) { this.montoBase = montoBase; }
  
-    public boolean isAdicionalCochera() { return adicionalCochera; }
-    public void setAdicionalCochera(boolean adicionalCochera) { this.adicionalCochera = adicionalCochera; }
+    public Boolean isAdicionalCochera() { return adicionalCochera != null && adicionalCochera; }
+    public void setAdicionalCochera(Boolean adicionalCochera) { this.adicionalCochera = adicionalCochera != null ? adicionalCochera : false; }
  
-    public boolean isAdicionalFrigobar() { return adicionalFrigobar; }
-    public void setAdicionalFrigobar(boolean adicionalFrigobar) { this.adicionalFrigobar = adicionalFrigobar; }
+    public Boolean isAdicionalFrigobar() { return adicionalFrigobar != null && adicionalFrigobar; }
+    public void setAdicionalFrigobar(Boolean adicionalFrigobar) { this.adicionalFrigobar = adicionalFrigobar != null ? adicionalFrigobar : false; }
  
     public Double getMontoAdicionales() { return montoAdicionales; }
     public void setMontoAdicionales(Double montoAdicionales) { this.montoAdicionales = montoAdicionales; }
@@ -117,6 +120,8 @@ public class Factura {
  
     public String getChequeBanco() { return chequeBanco; }
     public void setChequeBanco(String chequeBanco) { this.chequeBanco = chequeBanco; }
+ 
+    public Integer getCuotas() { return tarjetaCuotas; }
  
     public String getChequeVencimiento() { return chequeVencimiento; }
     public void setChequeVencimiento(String chequeVencimiento) { this.chequeVencimiento = chequeVencimiento; }

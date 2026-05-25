@@ -29,7 +29,6 @@ public class Habitacion implements ComponenteHabitacion {
         this.precioBase = precioBase;
     }
 
-    // 🌟 MÉTODOS DEL PATRÓN DECORATOR
     @Override
     public BigDecimal getPrecioNoche() {
         return this.precioBase;

@@ -20,7 +20,6 @@ public class FacturaController {
     @PostMapping("/generar")
     public ResponseEntity<?> generarFactura(@RequestBody Map<String, Object> payload) {
         try {
-            System.out.println("DEBUG FacturaController - payload recibido: " + payload);
             Factura factura = facturaServicio.generarFactura(payload);
             return ResponseEntity.ok(factura);
         } catch (IllegalArgumentException e) {

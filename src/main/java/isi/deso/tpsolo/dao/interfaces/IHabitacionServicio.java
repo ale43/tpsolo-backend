@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface IHabitacionServicio {
     List<Habitacion> obtenerHabitacionesDisponibles();
-    void agregarHabitacion(Habitacion habitacion); // Para testear
+    void agregarHabitacion(Habitacion habitacion); 
 }

@@ -1,5 +1,6 @@
 package isi.deso.tpsolo.controller;
  
+import isi.deso.tpsolo.entidades.Factura;
 import isi.deso.tpsolo.entidades.Habitacion;
 import isi.deso.tpsolo.entidades.Huesped;
 import isi.deso.tpsolo.entidades.Reserva;
@@ -9,6 +10,7 @@ import isi.deso.tpsolo.repositorio.HuespedRepositorio;
 import isi.deso.tpsolo.repositorio.ReservaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
  
 import java.time.LocalDate;
@@ -34,7 +36,6 @@ public class ReservaController {
  
     @PostMapping
     public ResponseEntity<?> crearReserva(@RequestBody Map<String, Object> payload) {
-        System.out.println("DEBUG: El JSON que llega al servidor es: " + payload);
         try {
             Map<String, String> huespedData = (Map<String, String>) payload.get("huesped");
             String dni = huespedData.get("dni");
@@ -76,13 +77,23 @@ public class ReservaController {
     }
  
     @DeleteMapping("/{id}")
-    @org.springframework.transaction.annotation.Transactional
+    @Transactional
     public ResponseEntity<?> eliminarReserva(@PathVariable Long id) {
         if (!reservaRepositorio.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        facturaRepositorio.deleteByReservaId(id);
+ 
+        List<Factura> facturasAsociadas = facturaRepositorio.findByReservaIdOrderByFechaEmisionDesc(id);
+        for (Factura f : facturasAsociadas) {
+            if (f.getReservaIdSnapshot() == null) {
+                f.setReservaIdSnapshot(id);
+            }
+            f.setReserva(null);
+            facturaRepositorio.save(f);
+        }
+        facturaRepositorio.flush();
+ 
         reservaRepositorio.deleteById(id);
-        return ResponseEntity.ok("Reserva eliminada con éxito");
+        return ResponseEntity.ok("Reserva eliminada. Las facturas quedaron en el historial.");
     }
 }

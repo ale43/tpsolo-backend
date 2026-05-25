@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HabitacionRepositorio extends JpaRepository<Habitacion, Integer> {
-    // Hereda automáticamente todos los métodos de persistencia (save, findById, findAll, etc.)
 }

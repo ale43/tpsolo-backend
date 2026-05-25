@@ -8,20 +8,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service // <- OBLIGATORIO para que Spring Boot reconozca el servicio
+@Service 
 public class HabitacionServicio implements IHabitacionServicio {
     
     @Autowired
-    private HabitacionRepositorio habitacionRepositorio; // <- Inyectamos el acceso a Postgres
+    private HabitacionRepositorio habitacionRepositorio; 
 
    @Override
 public List<Habitacion> obtenerHabitacionesDisponibles() {
-    // Traemos todo de una para ver si el mapeo base funciona
     return habitacionRepositorio.findAll();
 }
     @Override
     public void agregarHabitacion(Habitacion habitacion) {
-        // Guarda una nueva habitación físicamente en Postgres
         habitacionRepositorio.save(habitacion);
     }
 }
